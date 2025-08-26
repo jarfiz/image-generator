@@ -3,6 +3,6 @@ import { generateImage } from "../controller/image.controller.js";
 
 const router = Router();
 
-router.post("/", generateImage);
+router.post("/generate", generateImage);
 
 export default router;

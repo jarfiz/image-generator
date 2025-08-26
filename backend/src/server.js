@@ -17,7 +17,7 @@ app.use(
   express.static(path.join(__dirname, "../public/generated"))
 );
 
-app.use("/api/generate/images", imageRoutes);
+app.use("/api/images", imageRoutes);
 
 app.listen(config.PORT, () => {
   console.log(`Server running on port ${config.PORT}`);

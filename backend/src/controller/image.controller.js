@@ -1,5 +1,6 @@
 import fs from "fs";
 import { ai, Modality } from "../lib/ai.js";
+import prisma from "../lib/prisma.js";
 
 export const generateImage = async (req, res) => {
   try {
@@ -29,7 +30,17 @@ export const generateImage = async (req, res) => {
 
         fs.writeFileSync(`${location}/${imageName}`, buffer);
 
-        const url = "http://localhost:3000/public/generated/" + imageName;
+        const protocol = req.protocol;
+        const host = req.get("host");
+        const url = `${protocol}://${host}/public/generated/${imageName}`;
+
+        // save to database, so it can be use in frontend
+        await prisma.image.create({
+          data: {
+            prompt,
+            url,
+          },
+        });
 
         const image = "Image saved as " + imageName;
         res.status(201).json({ message: "Success", image, url });
