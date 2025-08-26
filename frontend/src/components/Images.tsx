@@ -19,11 +19,13 @@ const Images = () => {
   }, []);
 
   return (
-    <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+    <div className="mt-10 mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       {images.map((image) => (
-        <div
+        <a
+          href={image.url}
+          target="_blank"
           key={image.id}
-          className="flex flex-col items-center overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg transition-transform hover:scale-105 hover:shadow-2xl"
+          className="flex flex-col items-center overflow-hidden rounded-md border border-gray-200 bg-white shadow-lg transition-transform hover:scale-105 hover:shadow-2xl"
         >
           <img
             src={image.url}
@@ -31,11 +33,9 @@ const Images = () => {
             className="aspect-video w-full object-cover"
           />
           <div className="w-full p-4">
-            <h1 className="text-center text-lg font-semibold text-gray-800">
-              {image.prompt}
-            </h1>
+            <h1 className="text-lg text-gray-800">{image.prompt}</h1>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   );

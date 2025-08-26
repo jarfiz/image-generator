@@ -39,13 +39,13 @@ const Form = () => {
         name="prompt"
         id="prompt"
         rows={6}
-        className="pt-2.5 pl-4 outline"
+        className="rounded-md pt-2.5 pl-4 outline"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
       />
       <button
         type="submit"
-        className="cursor-pointer bg-slate-900 p-2 text-white outline transition duration-150 hover:bg-slate-700"
+        className="cursor-pointer rounded-md bg-slate-900 p-2 text-white outline transition duration-150 hover:bg-slate-700"
       >
         Generate image
       </button>
