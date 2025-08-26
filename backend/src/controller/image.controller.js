@@ -42,8 +42,11 @@ export const generateImage = async (req, res) => {
           },
         });
 
-        const image = "Image saved as " + imageName;
-        res.status(201).json({ message: "Success", image, url });
+        res.status(201).json({
+          success: true,
+          message: "Image generated successfully",
+          url,
+        });
       }
     }
   } catch (error) {
