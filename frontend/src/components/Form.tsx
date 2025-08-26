@@ -1,14 +1,35 @@
 import { useState, type FormEvent } from "react";
 
 const Form = () => {
-  const [prompt, setPrompt] = useState<string | "">("");
+  const [prompt, setPrompt] = useState<string>("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!prompt.trim()) {
       alert("Please enter a prompt before generating an image.");
       return;
+    }
+
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/images/generate`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt }),
+        },
+      );
+
+      const data = await res.json();
+
+      if (data.success) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
