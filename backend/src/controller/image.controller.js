@@ -54,3 +54,14 @@ export const generateImage = async (req, res) => {
     res.status(500).json({ message: "Internal server error", error });
   }
 };
+
+export const images = async (req, res) => {
+  try {
+    const images = await prisma.image.findMany();
+
+    res.status(200).json(images);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error", error });
+  }
+};

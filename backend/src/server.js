@@ -10,7 +10,13 @@ const __dirname = dirname(__filename);
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    // frontend
+    origin: config.FRONTEND_URL,
+    credentials: true,
+  })
+);
 
 // use public/generated: location of the generated image as static so it can be view
 // this will become  http://localhost:3000/public/generated/...filename
